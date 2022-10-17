@@ -26,6 +26,10 @@ public class triggerpress : MonoBehaviour
         {
             grabber = grabbable.grabbedBy;
         }
+        else
+        {
+            grabber = null;
+        }
         
         if ((grabber == left&&OVRInput.Get(OVRInput.RawButton.LIndexTrigger))
             ||(grabber==right && OVRInput.Get(OVRInput.RawButton.RIndexTrigger)))
@@ -33,8 +37,10 @@ public class triggerpress : MonoBehaviour
             if (!pressed)
             {
                 GameObject fired = Instantiate(bullet, GameObject.Find("bullet start").transform);
-                fired.GetComponent<Rigidbody>().velocity = fired.transform.right * -100;
+                fired.GetComponent<Rigidbody>().velocity = fired.transform.right * -20;
                 pressed = true;
+                GetComponent<AudioSource>().Play();
+
             }
         }
         else
